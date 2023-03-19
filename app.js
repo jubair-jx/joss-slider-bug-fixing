@@ -44,7 +44,8 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert("Hey, Already added !");
+    sliders = sliders.filter((slider) => slider != img);
+    element.classList.remove("added");
   }
 };
 var timer;
@@ -81,7 +82,7 @@ const createSlider = () => {
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
-  }, duration);
+  }, 1000);
 };
 
 // change slider index
@@ -113,11 +114,29 @@ searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
   const search = document.getElementById("search");
-  getImages(search.value);
+
   search.value = "";
+  if (!isNaN(search)) {
+    return alert("Please Enter Valid Words");
+  }
+
+  getImages(search.value);
+
   sliders.length = 0;
 });
 
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
+
+// searchBtn.addEventListener("keypress", (e) => {
+//   if (e.key === "Enter") {
+//     document.querySelector(".main").style.display = "none";
+//     clearInterval(timer);
+//     const search = document.getElementById("search");
+//     search.value = "";
+//     getImages(search.value);
+
+//     sliders.length = 0;
+//   }
+//});
