@@ -1,6 +1,7 @@
 const imagesArea = document.querySelector(".images");
 const gallery = document.querySelector(".gallery");
 const galleryHeader = document.querySelector(".gallery-header");
+const search = document.getElementById("search");
 const searchBtn = document.getElementById("search-btn");
 const sliderBtn = document.getElementById("create-slider");
 const sliderContainer = document.getElementById("sliders");
@@ -129,14 +130,9 @@ sliderBtn.addEventListener("click", function () {
   createSlider();
 });
 
-// searchBtn.addEventListener("keypress", (e) => {
-//   if (e.key === "Enter") {
-//     document.querySelector(".main").style.display = "none";
-//     clearInterval(timer);
-//     const search = document.getElementById("search");
-//     search.value = "";
-//     getImages(search.value);
-
-//     sliders.length = 0;
-//   }
-//});
+search.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    searchBtn.click();
+  }
+});
